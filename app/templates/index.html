@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+    <div style="padding-left: 0px;" class="ui container col-sm-6">
+        
+
+        <h1 class="ui center aligned header">Task Helper </h1>
+        <form class="ui form" action="" method="post">
+
+            <div class="field" style="width: 400px">
+
+            {{ form.hidden_tag() }}
+            {{ form.task.label }}<br>
+            {{ form.task(size=32) }} 
+            
+            
+            {{ form.submit() }}
+        
+            </div>
+
+        </form>
+    {% for tasks in todo %}
+    
+    <div class="ui basic segment">
+
+        <p class="ui header"> 
+
+            <ul style="padding-left: 0px;">
+                <a class="ui checkbox checked" href="/update/{{ tasks.id}}">
+                   
+                    <label> {{tasks.task}}</label>     
+                   
+                </a>
+      
+    
+
+
+    {% if tasks.complite == False %}
+    
+    {% else %}
+    
+    <i class="check big green circle outline icon"></i>
+
+    
+    {% endif %}
+    <a class="small ui pull-right teal button" href="/update/{{tasks.id}}">Promjeni</a>
+    <a class="small ui pull-right trash icon red button" href="/delete/{{tasks.id}}">Obriši
+    <i class="trash icon"></i>
+    </a>
+     
+            </ul>
+        </p>
+
+
+    </div>
+    
+    {% endfor %}
+    </div>
+{% endblock %}
